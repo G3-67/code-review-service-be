@@ -12,7 +12,13 @@ import java.util.Map;
 
 @RestController
 @RequestMapping("/api/review")
-@CrossOrigin
+@CrossOrigin(
+        origins = "http://localhost:5173",
+        allowedHeaders = "*",
+        methods = {RequestMethod.POST, RequestMethod.OPTIONS}
+)
+
+
 public class CodeReviewController {
         @Autowired
         private AiCodeReviewService service;
