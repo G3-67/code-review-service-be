@@ -2,6 +2,8 @@ package com.example.codereviewservice.controller;
 
 import com.example.codereviewservice.client.HelloWorldClient;
 import com.example.codereviewservice.dto.CodeReviewRequest;
+import com.example.codereviewservice.dto.SimplePRRequest;
+import com.example.codereviewservice.dto.SimplePRResponse;
 import com.example.codereviewservice.service.AiCodeReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,6 +39,12 @@ public class CodeReviewController {
         // Call Hello World Service
         String helloMessage = helloWorldClient.getHello();
         return "Code Review Service got: " + helloMessage;
+    }
+
+    @PostMapping("/prsurvey")
+    public SimplePRResponse reviewPrCode(@RequestBody SimplePRRequest request) {
+        // Call PRReview service via Feign
+        return helloWorldClient.reviewPR(request);
     }
 
 
